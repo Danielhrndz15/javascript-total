@@ -1,0 +1,35 @@
+z0='ascii.cl';
+z1='10sites.com';
+z2='sitios';
+z3='"  "';
+z7='sitios@losleones.com';
+z8='';
+z9='.sitio.cl';
+z10='';
+z11='';
+z12=' '
+z13=' '+z0+' ';
+z14='ascii';
+z15='"Reduce screen size"';
+z16='"Augment screen size"';
+zn='/';
+
+ch='.cl/';
+
+k0='"http://'; k0s='"https://';
+k9='http://'; k9s='https://';
+k2=k0s+z0+zn; k2s=k2; k2u=k0+z0+zn;
+k11=k9s+z0+zn; k11s=k11; k11u=k9+z0+zn;
+
+dom='0.0-02.net';
+
+k2g=k0s+dom+zn;
+k6=k2g+'i/ascii/ascii-cl.gif"';
+
+icnt=0;
+
+va1a='2001';
+day=new Array();
+month=new Array();
+month3=new Array();
+month_pre='';
