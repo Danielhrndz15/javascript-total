@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temporizador 1</title>
+</head>
+<body>
+    <h1>Temporizador de 5 segundos</h1>
+    <button onclick="iniciarTemporizador()">Iniciar temporizador</button>
+    <script>
+        function mostrarAlerta() {
+            alert("Se acabó el tiempo");
+        }
+
+        function iniciarTemporizador() {
+            setTimeout(mostrarAlerta, 5000);
+        }
+    </script>
+</body>
+</html>

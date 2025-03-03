@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            audio::webkit-media-controls-panel {
+                background-color: aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="9.png" alt="" width="10%">
+
+        <audio controls id="pokemon">
+            <source src="cries_pokemon_latest_9.ogg" type="audio/mpeg">
+        </audio>
+
+        <button onclick="mostrarAudio()">audio</button>
+
+        <script>
+            let AudioPokemon=document.getElementById("pokemon")
+            function mostrarAudio(){
+                AudioPokemon.play()
+            }
+        </script>
+    </body>
+</html>
