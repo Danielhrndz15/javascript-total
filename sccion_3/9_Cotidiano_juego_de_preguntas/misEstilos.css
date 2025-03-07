@@ -1,0 +1,20 @@
+body {
+    background-color: blanchedalmond;
+}
+
+h1 {
+    color:rgb(153, 121, 82);
+    background-color: rgb(243, 216, 98);
+}
+
+p {
+    color:rgb(86, 68, 46);
+    font-weight: bold;
+}
+
+butto{
+    color: white;
+    background-color: rgb(198, 169, 124);
+    width: 100px;
+    height: 50px; 
+}

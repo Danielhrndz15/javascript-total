@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="misEstilos.css">
+    <title>Juego_de_preguntas</title>
+    <audio id="SonidoAlarma">
+        <source src="./gameover.mp3" type="audio/mpeg">
+    </audio>
+</head>
+
+<body onload="comenzarTiempo()">
+    
+    <h1>Responde lo más rápido que puedas</h1>
+    <h2 id="Tiempo">00:30</h2>
+    <br>
+    <p>Cual es la persona mas rapida del mundo?</p>
+    <input type="text" id="UsaintBoltresp">
+    <br>
+    <p>Quién es el mas fuerte del mundo?</p>
+    <input type="text" id="TomRyanStoltmanresp">
+    <br>
+    <p>¿En qué año se llevó a cabo el primer vuelo de los hermanos Wright?</p>
+    <input type="text" id="wrightresp">
+    <br>
+    <p>¿Cuál es el río más largo del mundo?</p>
+    <input type="text" id="rioresp">
+    <br>
+    <p>¿Qué famoso científico desarrolló la teoría de la relatividad?</p>
+    <input type="text" id="teoriaresp">
+    <br><br>
+    <button onclick="terminar()">Terminé!</button>
+    <br><br>
+    <button onclick="volverIntentar()">Volver a intentar</button>
+
+    <script>
+        let tiempoRestante = 30;
+        let elementoSonidoAlarma = document.getElementById("SonidoAlarma");
+        let elementoTiempo = document.getElementById("Tiempo");
+        let intervalo;
+ 
+        function mostrarRespuestas() {
+            clearInterval(intervalo);
+            let respuestas = [
+                document.getElementById("UsaintBoltresp").value,
+                document.getElementById("TomRyanStoltmanresp").value,
+                document.getElementById("wrightresp").value,
+                document.getElementById("rioresp").value,
+                document.getElementById("teoriaresp").value
+            ];
+ 
+            let fechaActual = new Date();
+            alert(
+                "La fecha de hoy es " +
+                fechaActual.toLocaleDateString('es-ES') +
+                " y tus respuestas son:\n" +
+                respuestas.join("\n")
+            );
+        }
+ 
+        function comenzarTiempo() {
+            intervalo = setInterval(function () {
+                tiempoRestante--;
+                let minutos = Math.floor(tiempoRestante / 60).toString().padStart(2, "0");
+                let segundos = (tiempoRestante % 60).toString().padStart(2, "0");
+                elementoTiempo.textContent = minutos + ":" + segundos;
+ 
+                tiempoRestante <= 0 && (clearInterval(intervalo), elementoSonidoAlarma.play(), alert("¡Game Over!"));
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

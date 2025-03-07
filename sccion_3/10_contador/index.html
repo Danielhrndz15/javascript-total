@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Regresivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #contador {
+            font-size: 2em;
+            margin: 20px;
+        }
+
+        button {
+            font-size: 1em;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Contador Regresivo</h1>
+    <div id="contador">30</div>
+    <button id="btnIniciar">Iniciar</button>
+    <button id="btnDetener">Detener</button>
+    <button id="btnReiniciar">Reiniciar</button>
+
+    <script>
+        let tiempo = 30;  // Tiempo inicial en segundos
+        let intervalo = null;  // Variable para almacenar el intervalo
+
+        function actualizarContador() {
+            document.getElementById("contador").textContent = tiempo;
+        }
+
+        function contar() {
+            if (tiempo > 0) {
+                tiempo--;
+                actualizarContador();
+            } else {
+                detenerContador();
+                alert("¡Tiempo terminado!");
+            }
+        }
+
+        function iniciarContador() {
+            if (intervalo === null) { // Evita múltiples intervalos activos
+                intervalo = setInterval(contar, 1000);
+            }
+        }
+
+        function detenerContador() {
+            clearInterval(intervalo);
+            intervalo = null;
+        }
+
+        function reiniciarContador() {
+            detenerContador();
+            tiempo = 30; // Reiniciar a 30 segundos
+            actualizarContador();
+        }
+
+        // Asignar eventos a los botones
+        document.getElementById("btnIniciar").addEventListener("click", iniciarContador);
+        document.getElementById("btnDetener").addEventListener("click", detenerContador);
+        document.getElementById("btnReiniciar").addEventListener("click", reiniciarContador);
+
+        actualizarContador(); // Mostrar 30 al inicio
+    </script>
+
+</body>
+
+</html>
