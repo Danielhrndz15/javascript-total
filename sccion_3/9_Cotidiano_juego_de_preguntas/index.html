@@ -5,36 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="misEstilos.css">
-    <title>Juego_de_preguntas</title>
+    <title>Practica 1</title>
     <audio id="SonidoAlarma">
         <source src="./gameover.mp3" type="audio/mpeg">
     </audio>
 </head>
-
-<body onload="comenzarTiempo()">
-    
-    <h1>Responde lo más rápido que puedas</h1>
-    <h2 id="Tiempo">00:30</h2>
+ 
+<body onload="comenzarTiempo()">    
+   
+    <h2 id="h2">Responde las siguientes preguntas</h2>
+        <h2 id="Tiempo">00:30</h2>
     <br>
-    <p>Cual es la persona mas rapida del mundo?</p>
-    <input type="text" id="UsaintBoltresp">
-    <br>
-    <p>Quién es el mas fuerte del mundo?</p>
-    <input type="text" id="TomRyanStoltmanresp">
-    <br>
-    <p>¿En qué año se llevó a cabo el primer vuelo de los hermanos Wright?</p>
-    <input type="text" id="wrightresp">
-    <br>
-    <p>¿Cuál es el río más largo del mundo?</p>
-    <input type="text" id="rioresp">
-    <br>
-    <p>¿Qué famoso científico desarrolló la teoría de la relatividad?</p>
-    <input type="text" id="teoriaresp">
-    <br><br>
-    <button onclick="terminar()">Terminé!</button>
-    <br><br>
-    <button onclick="volverIntentar()">Volver a intentar</button>
-
+    <b>¿cual es tu numero favorito?</b><br><br>
+    <input type="text" id="Respuesta1"><br><br>
+ 
+    <b>¿cual es la persona mas rapida del mundo?</b><br><br>
+    <input type="text" id="Respuesta2"><br><br>
+ 
+    <b>¿quien es tu personaje favorito de la tele?</b><br><br>
+    <input type="text" id="Respuesta3"><br><br>
+ 
+    <b>¿cual es rio mas grande?</b><br><br>
+    <input type="text" id="Respuesta4"><br><br>
+ 
+    <b>¿Qué te da miedo?</b><br><br>
+    <input type="text" id="Respuesta5"><br><br>
+ 
+    <button onclick="mostrarRespuestas()">Termine</button><br><br>
+    <button onclick="location.reload()">Intentar de nuevo</button>
+   
     <script>
         let tiempoRestante = 30;
         let elementoSonidoAlarma = document.getElementById("SonidoAlarma");
@@ -44,11 +43,11 @@
         function mostrarRespuestas() {
             clearInterval(intervalo);
             let respuestas = [
-                document.getElementById("UsaintBoltresp").value,
-                document.getElementById("TomRyanStoltmanresp").value,
-                document.getElementById("wrightresp").value,
-                document.getElementById("rioresp").value,
-                document.getElementById("teoriaresp").value
+                document.getElementById("Respuesta1").value,
+                document.getElementById("Respuesta2").value,
+                document.getElementById("Respuesta3").value,
+                document.getElementById("Respuesta4").value,
+                document.getElementById("Respuesta5").value
             ];
  
             let fechaActual = new Date();
@@ -71,6 +70,7 @@
             }, 1000);
         }
     </script>
+ 
 </body>
-
+ 
 </html>
