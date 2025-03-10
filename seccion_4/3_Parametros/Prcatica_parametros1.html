@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parámetros 1</title>
+</head>
+<body>
+    <p>Haz clic en el botón para sumar dos números:</p>
+    <button onclick="suma()">Click aquí</button>
+    <script>
+        function suma() {
+            // Solicitar números al usuario
+            let numero1 = parseFloat(prompt("Introduce el primer número:"));
+            let numero2 = parseFloat(prompt("Introduce el segundo número:"));
+            
+            // Verificar que se ingresaron números válidos
+            if (!isNaN(numero1) && !isNaN(numero2)) {
+                let resultado = numero1 + numero2;
+                alert("La suma de los dos números es: " + resultado);
+            } else {
+                alert("Por favor, introduce números válidos.");
+            }
+        }
+    </script>
+</body>
+</html>
