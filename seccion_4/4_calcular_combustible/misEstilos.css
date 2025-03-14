@@ -1,0 +1,18 @@
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: lem;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: lem;
+}
+
+body {
+    background-color: honeydew;
+}
+button {
+    color: white
+    background-color cadetblue;
+    border-style: hidden;
+}
