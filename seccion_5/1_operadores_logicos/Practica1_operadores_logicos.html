@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <title>Document</title>
+</head>
+<body>
+    <p>ingrese un número</p>
+    <input type="number" id="numero1">
+    <p>ingrese otro número</p>
+    <input type="number" id="numero2">
+    <button onclick="calcular()">enviar</button>
+    <h3 id="text"></h3>
+<script>
+    let num1 = document.getElementById("numero1");
+    let num2 = document.getElementById("numero2");
+    let texto = document.getElementById("text");
+ 
+    function calcular(){
+ 
+        let verdadero = (num1.value) > (num2.value);
+        texto.textContent = verdadero;
+ 
+        let falso = (num1.value) < (num2.value);
+        texto.textContent = verdadero;
+ 
+ 
+    }
+
+</script>
+</body>
+</html>
+ 
