@@ -1,24 +1,144 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Cotidiano Calculadora</title>
+        <title>calculadora</title>
         <link rel="stylesheet" href="misEstilos.css">
-        <script src="misScripts.js"></script>
     </head>
-
     <body>
-        <h1>Calculadora de Danielito</h1>
-        <input type="dato1"> <input type="dato2">
-        <br>
-        <button onclick="sumar()">+</button> <button onclick="resta()">-</button> <button onclick="multiplicar()">x</button> <button onclick="division()">/</button>
-        <br>
-        <button onclick="Raiz()">raiz</button> <button onclick="potencia()">potencia</button>
-        <br>
-        <button onclick="absoluto()">absoluto</button> <button onclick="random()">random</button>
-        <br>
-        <p>Resultado</p>
-        <input type="dato3">
-        <br>
-        <button onclick="round()">round</button> <button onclick="floor()">floor</button> <button onclick="ceil()">ceil</button>
+        <h1>Calculadora</h1>
+ 
+        <div class="inputs">
+            <input type="number" id="Put1">
+            <input type="number" id="Put2">
+        </div>
+ 
+        <p>
+            <button onclick="sumar()">+</button>
+            <button onclick="restar()">-</button>
+            <button onclick="multiplicar()">x</button>
+            <button onclick="dividir()">/</button>
+        </p>
+ 
+        <p>
+            <button onclick="raiz()">raiz</button>
+            <button onclick="potencia()">potencia</button>
+        </p>
+ 
+        <p>
+            <button onclick="absoluto()">absoluto</button>
+            <button onclick="random()">random</button>
+        </p>
+ 
+        <h2>Resultado:</h2>
+        <div id="resultado"></div>
+ 
+        <p>
+            <button onclick="redondear()">roud</button>
+            <button onclick="redondearAbajo()">floor</button>
+            <button onclick="redondearArriba()">ceil</button>
+        </p>
+ 
+        <script>
+            function sumar() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                let resultado = parseFloat(numero1.value) + parseFloat(numero2.value);
+                document.getElementById("resultado").textContent = `Resultado: ${resultado}`;
+            }
+ 
+            function restar() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                let resultado = parseFloat(numero1.value) - parseFloat(numero2.value);
+                document.getElementById("resultado").textContent = `Resultado: ${resultado}`;
+            }
+ 
+            function dividir() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                if (numero2.value == "0") {
+                    document.getElementById("resultado").textContent = "Error: División por cero";
+                } else {
+                    let resultado = parseFloat(numero1.value) / parseFloat(numero2.value);
+                    document.getElementById("resultado").textContent = `Resultado: ${resultado}`;
+                }
+            }
+ 
+            function multiplicar() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                let resultado = parseFloat(numero1.value) * parseFloat(numero2.value);
+                document.getElementById("resultado").textContent = `Resultado: ${resultado}`;
+            }
+ 
+            function raiz() {
+                let numero1 = document.getElementById("Put1");
+                if (numero1.value !== "") {
+                    let resultado = Math.sqrt(parseFloat(numero1.value));
+                    document.getElementById("resultado").textContent = `La raíz es: ${resultado}`;
+                } else {
+                    alert("Ingresa un número en el primer campo");
+                }
+            }
+ 
+            function potencia() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                if (numero1.value !== "" && numero2.value !== "") {
+                    let resultado = Math.pow(parseFloat(numero1.value), parseFloat(numero2.value));
+                    document.getElementById("resultado").textContent = `La potencia es: ${resultado}`;
+                } else {
+                    alert("Por favor, ingresa ambos números");
+                }
+            }
+ 
+            function absoluto() {
+                let numero1 = document.getElementById("Put1");
+                if (numero1.value !== "") {
+                    let resultado = Math.abs(parseFloat(numero1.value));
+                    document.getElementById("resultado").textContent = `El valor absoluto es: ${resultado}`;
+                } else {
+                    alert("Por favor, ingresa un número en el primer campo");
+                }
+            }
+ 
+            function random() {
+                let resultado = Math.floor(Math.random() * 100) + 1;
+                document.getElementById("resultado").textContent = `Número aleatorio: ${resultado}`;
+            }
+ 
+            function redondear() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                if (numero1.value !== "" && numero2.value !== "") {
+                    let resultado = Math.round(parseFloat(numero1.value) + parseFloat(numero2.value));
+                    document.getElementById("resultado").textContent = `Redondeo al más cercano: ${resultado}`;
+                } else {
+                    alert("Por favor, ingresa números en ambos campos");
+                }
+            }
+ 
+            function redondearAbajo() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                if (numero1.value !== "" && numero2.value !== "") {
+                    let resultado = Math.floor(parseFloat(numero1.value) + parseFloat(numero2.value));
+                    document.getElementById("resultado").textContent = `Redondeo hacia abajo: ${resultado}`;
+                } else {
+                    alert("Por favor, ingresa números en ambos campos");
+                }
+            }
+ 
+            function redondearArriba() {
+                let numero1 = document.getElementById("Put1");
+                let numero2 = document.getElementById("Put2");
+                if (numero1.value !== "" && numero2.value !== "") {
+                    let resultado = Math.ceil(parseFloat(numero1.value) + parseFloat(numero2.value));
+                    document.getElementById("resultado").textContent = `Redondeo hacia arriba: ${resultado}`;
+                } else {
+                    alert("Por favor, ingresa números en ambos campos");
+                }
+            }
+        </script>
     </body>
 </html>
