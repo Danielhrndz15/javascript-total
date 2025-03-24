@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+ 
+<head>
+    <title>Menú cine</title>
+    <link rel="stylesheet" href="misEstilos.css">
+    <script src="misScripts.js"></script>
+    <style>
+        h2 {
+            color: #2c3e50;
+        }
+ 
+        .genero {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+ 
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+ 
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h1>¡Bienvenidos al cine!</h1>
+    <h3>--- Menú ---</h3>
+    <p>Queremos hacer de tu visita, una experiencia más placentera. Para eso, ingresa tu edad y selecciona el género que
+        más te guste, y te recomendamos tu pelicula ideal.</p>
+    <p>Edad: <input type="number" id="edad"></p>
+    <button onclick="recomendar('drama')">Drama</button>
+    <button onclick="recomendar('comedia')">Comedia</button>
+    <button onclick="recomendar('musical')">Musical</button>
+    <button onclick="recomendar('crimen')">Crimen</button>
+    <h3>Nuestra recomendación:</h3>
+    <h2 id="recomendacion"></h2>
+    <div class="container">
+        <h2>Clasificación de películas por edad</h2>
+ 
+        <div class="genero">Género: Drama</div>
+        <ul>
+            <li>Menores de 13 años → <strong>Casablanca</strong></li>
+            <li>Entre 13 y 15 años → <strong>The Shawshank Redemption</strong></li>
+            <li>Mayores e igual de 16 años → <strong>Taxi Driver</strong></li>
+        </ul>
+ 
+        <div class="genero">Género: Comedia</div>
+        <ul>
+            <li>Menores de 13 años → <strong>Back to the Future</strong></li>
+            <li>Entre 13 y 15 años → <strong>The Truman Show</strong></li>
+            <li>Mayores e igual de 16 años → <strong>The Wolf of Wall Street</strong></li>
+        </ul>
+ 
+        <div class="genero">Género: Musical</div>
+        <ul>
+            <li>Menores de 13 años → <strong>La La Land</strong></li>
+            <li>Entre 13 y 15 años → <strong>Les Misérables</strong></li>
+            <li>Mayores e igual de 16 años → <strong>The Rocky Horror Picture Show</strong></li>
+        </ul>
+ 
+        <div class="genero">Género: Crimen</div>
+        <ul>
+            <li>Menores de 13 años → <strong>No hay opciones para esta edad</strong></li>
+            <li>Entre 13 y 15 años → <strong>El Secreto de sus Ojos</strong></li>
+            <li>Mayores e igual de 16 años → <strong>The Godfather</strong></li>
+        </ul>
+    </div>
+</body>
+ 
+</html>
+ 
