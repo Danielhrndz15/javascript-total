@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style background="red"></style>
+</head>
+<body>
+    <script>
+        let alto = 4;
+        let ancho = 3;
+ 
+        loopExterno:
+        for (y = 1; y <= alto; y++){
+            for (x = 1; x <= ancho; x++) {
+                document.write(y + "." + x + "<br>");
+                if (y == 2 && x == 2) {
+                    continue loopExterno;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
