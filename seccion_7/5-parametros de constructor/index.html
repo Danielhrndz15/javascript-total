@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parametros de constructor</title>
+</head>
+ 
+<body>
+    <script>
+        function Perro(raza, edad) {
+            this.patas = 4;
+            this.raza = raza;
+            this.edad = edad;
+            this.ladrar = function () {
+                console.log("Guau");
+            };
+        };
+ 
+        let simba = new Perro("shih tzu", 4);
+        let reina = new Perro("Caniche", 15);
+        let batu = new Perro("Cruza", 8);
+  
+        function Empleado(nombre, apellido, edad, cargo) {
+            this.nombre
+            this.apellido
+            this.edad
+            this.cargo
+            this.presentarse = function () {
+                console.log(`Mi nombre es ${this.nombre}) ${this.apellido}, soy $(this.cargo), y tengo ${this.edad} años de edad`);
+ 
+            };
+        };
+        let miArray = [1, 2, 3];
+        for (propiedad in miArray) {
+            console.log(propiedad + "-" + miArray[propiedad])
+        }
+    </script>
+</body>
+ 
+</html>

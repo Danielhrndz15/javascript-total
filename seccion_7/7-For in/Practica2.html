@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loop For In</title>
+</head>
+<body>
+    <script>
+        function Automovil(marca, modelo, año, color) {
+            this.ruedas = 4;
+            this.marca = marca;
+            this.modelo = modelo;
+            this.año = año;
+            this.color = color;
+            this.tocarBocina = function() {
+                console.log("Beep beep!");
+            };
+        }
+
+        let fordFiesta = new Automovil("Ford", "Fiesta", 2015, "Rojo");
+        let toyotaCorolla = new Automovil("Toyota", "Corolla", 2020, "Blanco");
+        let hondaCivic = new Automovil("Honda", "Civic", 2018, "Negro");
+
+        for (let caracteristica in hondaCivic) {
+            console.log(caracteristica + " : " + hondaCivic[caracteristica]);
+        }
+    </script>
+</body>
+</html>

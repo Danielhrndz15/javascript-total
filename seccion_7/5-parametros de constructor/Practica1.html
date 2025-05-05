@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructores con parámetros</title>
+</head>
+<body>
+    <script>
+        function Automovil(marca, modelo, anio) {
+            this.marca = marca;
+            this.modelo = modelo;
+            this.anio = anio;
+            this.mostrarInfo = function () {
+                console.log(`Automóvil: ${this.marca} ${this.modelo}, Año: ${this.anio}`);
+            };
+        }
+ 
+        let auto1 = new Automovil("Toyota", "Corolla", 2020);
+        let auto2 = new Automovil("Honda", "Civic", 2022);
+        let auto3 = new Automovil("Ford", "Mustang", 2021);
+ 
+        auto1.mostrarInfo();
+        auto2.mostrarInfo();
+        auto3.mostrarInfo();
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otras formas de crear objetos</title>
+</head>
+<body>
+    <script>
+        let cochel = new Object();
+
+        cochel.marca = 'Chevrolet';
+        cochel['modelo'] = 'Prisma';
+        cochel.encender = function() {
+            alert("coche encendido");
+        };
+
+        let perrol = new Object({nombre: 'Simba', edad: 4});
+
+        let coche2 = Object.create(cochel);
+    </script>
+</body>
+</html>

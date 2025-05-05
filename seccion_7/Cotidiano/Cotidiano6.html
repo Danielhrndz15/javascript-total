@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Empleados</title>
+    <link rel="stylesheet" href="misEstilos.css">
+</head>
+<body>
+    <h2>Registro de Empleados</h2>
+    <form id="formEmpleado">
+        <label for="txtExpediente">Expediente:</label>
+        <input type="text" id="txtExpediente">
+
+        <label for="txtNombre">Nombre:</label>
+        <input type="text" id="txtNombre">
+
+        <label for="txtApellido">Apellido:</label>
+        <input type="text" id="txtApellido">
+
+        <label for="txtNacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="txtNacimiento">
+
+        <label for="txtCargo">Cargo:</label>
+        <input type="text" id="txtCargo">
+
+        <button type="button" onclick="agregarEmpleado()">Cargar empleado</button>
+        <button type="button" onclick="mostrarEmpleados()">Mostrar empleados</button>
+    </form>
+
+    <script src="misScripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructores - Polo</title>
+</head>
+<body>
+  <script>
+    function Polo(marca, color, talle) {
+      this.marca = marca;
+      this.color = color;
+      this.talle = talle;
+ 
+      this.mostrar = function () {
+        console.log(`Polo marca ${this.marca}, color ${this.color}, talle ${this.talle}`);
+      };
+    }
+ 
+    let polo1 = new Polo("Nike", "Rojo", "M");
+    let polo2 = new Polo("Adidas", "Azul", "L");
+    let polo3 = new Polo("Puma", "Negro", "S");
+ 
+    polo1.mostrar();
+    polo2.mostrar();
+    polo3.mostrar();
+  </script>
+</body>
+</html>

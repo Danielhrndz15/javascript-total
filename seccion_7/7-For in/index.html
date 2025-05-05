@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loop For In</title>
+  </head>
+  <body>
+    <script>
+     function Perro(raza, edad, color) {
+    this.patas = 4;
+    this.raza = raza;
+    this.edad = edad;
+    this.color = color;
+    this.ladra = function() {
+        console.log("Guau");
+    };
+}
+ 
+let simba = new Perro("Shih Tzu", 4, "marrón");
+let reina = new Perro("Caniche", 15, "blanco");
+let batu = new Perro("Cruza", 8, "negro");
+ 
+for (let caracteristica in batu) {
+    console.log(caracteristica + ": " + batu[caracteristica]);
+}
+    </script>
+  </body>
+</html>
+  
