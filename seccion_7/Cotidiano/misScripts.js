@@ -33,12 +33,12 @@ function mostrarEmpleados() {
         return;
     }
 
-    let mensaje = "Lista de Empleados:\n";
+    let mensaje = "Lista de Empleados: ";
     empleados.forEach(emp => {
-        mensaje += "Expediente: " + emp.expediente + "\n";
-        mensaje += "Nombre: " + emp.nombre + " " + emp.apellido + "\n";
-        mensaje += "Nacimiento: " + emp.nacimiento + "\n";
-        mensaje += "Cargo: " + emp.cargo + "\n\n";
+        mensaje += "Expediente: " + emp.expediente + " ";
+        mensaje += "Nombre: " + emp.nombre + " " + emp.apellido + " ";
+        mensaje += "Nacimiento: " + emp.nacimiento + " ";
+        mensaje += "Cargo: " + emp.cargo + "   ";
     });
 
     alert(mensaje);
