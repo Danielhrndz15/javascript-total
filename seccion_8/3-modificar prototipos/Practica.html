@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+function Restaurante(nombre, direccion, ciudad) {
+    this.nombre = nombre;
+    this.direccion = direccion;
+    this.ciudad = ciudad;
+}
+ 
+let restaurante1 = new Restaurante('El Buen Sabor', 'Avenida Central, 123', 'San Rafael');
+ 
+let restaurante2 = Object.create(restaurante1);
+ 
+function CSDP() {
+            console.log(restaurante2);
+            alert('Revisa la consola para ver la herencia del restaurante 2')
+        }
+        CSDP()
+    </script>
+</body>
+</html>

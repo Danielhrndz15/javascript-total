@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Prototipos en JavaScript</title>
+</head>
+<body>
+    <script>
+        // Se declara el objeto 'auto' con las propiedades 'marca' y 'modelo'
+        let auto = {
+            marca: "Toyota",
+            modelo: "Corolla"
+        };
+ 
+        function prototipos() {
+            // Se crea una instancia 'auto1' basada en el prototipo 'auto'
+            let auto1 = Object.create(auto);
+ 
+            // Mostramos el contenido del prototipo de 'auto1'
+            console.log(Object.getPrototypeOf(auto1)); // Resultado: { marca: 'Toyota', modelo: 'Corolla' }
+        }
+ 
+        // Llamamos a la función para ver el resultado en consola
+        prototipos();
+    </script>
+</body>
+</html>
+ 

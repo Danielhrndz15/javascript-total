@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prototipos</title>
+</head>
+<body>
+    <Script>
+        
+      // Se declara una variable 'perro' y se le asigna un objeto con una 
+      // propiedad 'nombre'
+      let perro = {nombre: 'simba'};
+
+      /* 
+         Object.create() es una función que permite crear un nuevo objeto
+         cuyo prototipo será el objeto que se le pase como argumento.
+
+         En este caso, 'perro1' es un nuevo objeto que NO tiene su propia 
+         propiedad 'nombre',
+         pero sí puede acceder a 'nombre' porque lo hereda del prototipo 'perro'.
+      */
+      let perro1 = Object.create(perro);
+
+      // Mostramos por consola el valor de la propiedad 'nombre' de 'perro1'
+      console.log(perro1.nombre); // Resultado: 'simba'
+
+      // También podríamos comprobar cuál es su prototipo con:
+      console.log(Object.getPrototypeOf(perro1)); // Resultado: { nombre: 'simba' }
+    
+    </Script>
+</body>
+</html>

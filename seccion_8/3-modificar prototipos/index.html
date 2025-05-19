@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+      /*
+        Se define una función constructora llamada 'Libro'.
+        Se usa para crear objetos con propiedades 'autor', 'titulo' y 'cantPaginas'.
+      */
+      function Libro(autor, titulo, cantPaginas){
+        this.autor = autor;             // Asigna el valor del autor al objeto creado
+        this.titulo = titulo;           // Asigna el título del libro
+        this.cantPaginas = cantPaginas; // Asigna la cantidad de páginas
+      }
+
+      /*
+        Se crea una nueva instancia del objeto Libro utilizando 'new'.
+        Esto genera un nuevo objeto con los valores dados.
+      */
+      let libro1 = new Libro("Stephen King", "Carrie", 524);
+
+      /*
+        Se agrega un nuevo método al prototipo del constructor Libro.
+        Esto permite que todas las instancias de Libro compartan el mismo método 'abrirLibro'.
+        El método usa 'alert' para mostrar un mensaje indicando que el libro fue abierto.
+        'this.titulo' accede a la propiedad del objeto que llama al método.
+      */
+      Libro.prototype.abrirLibro = function(){
+        alert(this.titulo + " ha sido abierto");
+      }
+
+      /*
+        Aquí se intenta agregar una propiedad llamada 'edicion' al prototipo de Libro.
+        Sin embargo, se está haciendo referencia a 'this.edicion' en el ámbito global,
+        que probablemente sea undefined, ya que no se ha definido previamente.
+        Esto no causa un error, pero tampoco tendrá el efecto deseado si no se declara 'this.edicion' en contexto.
+      */
+      Libro.prototype.edicion = this.edicion; // ❗ Posiblemente undefined si 'this.edicion' no está definido
+
+      /*
+        Se define otra función constructora llamada 'UnObjeto'.
+        Crea objetos con una única propiedad llamada 'a'.
+      */
+      function UnObjeto(a) {
+        this.a = a;
+      }
+
+      /*
+        Se agregan dos métodos al prototipo del constructor 'UnObjeto':
+        - metodo1
+        - metodo2
+        Así, todas las instancias de UnObjeto tendrán acceso a estos métodos.
+      */
+      UnObjeto.prototype.metodo1 = function(){}; // Método vacío
+      UnObjeto.prototype.metodo2 = function() {}; // Otro método vacío
+
+      // Estos métodos pueden luego ser llamados por cualquier instancia creada con 'new UnObjeto(...)'
+    
+    </script>
+</body>
+</html>

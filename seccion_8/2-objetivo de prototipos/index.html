@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+      /*
+        Se declara una función constructora llamada 'Libro'.
+        Las funciones constructoras en JavaScript se usan para crear múltiples objetos con las mismas propiedades.
+        Por convención, su nombre inicia con mayúscula.
+      */
+      function Libro(autor, titulo, cantPaginas){
+        // 'this' se refiere al nuevo objeto que se va a crear cuando se use 'new'
+        // A cada propiedad del objeto se le asigna el valor que se recibe como parámetro
+        this.autor = autor;
+        this.titulo = titulo;
+        this.cantPaginas = cantPaginas;
+      }
+
+      /*
+        Aquí se crea una instancia del objeto 'Libro' utilizando la palabra clave 'new'.
+        - 'new' crea un nuevo objeto vacío
+        - Asocia ese nuevo objeto con el prototipo de la función constructora
+        - Ejecuta la función 'Libro' con 'this' apuntando al nuevo objeto
+        - Retorna automáticamente ese objeto
+      */
+      let libro1 = new Libro("Stephen King", "Carrie", 524);
+
+      // Si imprimimos libro1 en la consola, veremos el objeto con sus propiedades asignadas
+      console.log(libro1);
+      // Resultado: { autor: "Stephen King", titulo: "Carrie", cantPaginas: 524 }
+    
+    </script>
+</body>
+</html>    

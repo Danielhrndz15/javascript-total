@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Prototipos en JavaScript</title>
+</head>
+<body>
+    <script>
+        // Se declara el objeto 'estudiante' con propiedades 'nombre', 'apellido' y 'legajo'
+        let estudiante = {
+            nombre: "Juan",
+            apellido: "Pérez",
+            legajo: 12345
+        };
+ 
+        function prototipos() {
+            // Se crea una instancia 'estudiante1' basada en el prototipo 'estudiante'
+            let estudiante1 = Object.create(estudiante);
+ 
+            // Mostramos el contenido del prototipo de 'estudiante1'
+            console.log(Object.getPrototypeOf(estudiante1)); // Resultado: { nombre: 'Juan', apellido: 'Pérez', legajo: 12345 }
+        }
+ 
+        // Llamamos a la función para ver el resultado en consola
+        prototipos();
+    </script>
+</body>
+</html>

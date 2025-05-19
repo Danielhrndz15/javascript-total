@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function Empleado(nombre, antiguedad, sueldo) {
+            this.nombre = nombre;
+            this.antiguedad = antiguedad;
+            this.sueldo = sueldo;
+        }
+
+        let empleado1 = new Empleado("Jorge Gonzalez", 5, 150);
+                /*
+          Se crea un nuevo objeto 'empleado2' utilizando Object.create().
+          Esto establece a 'empleado1' como el prototipo de 'empleado2'.
+          Es decir, 'empleado2' hereda todas las propiedades y métodos de 'empleado1'.
+          No se copian los valores, sino que se accede a ellos mediante la cadena de prototipos.
+        */
+        let empleado2 = Object.create(empleado1);
+
+
+        function prototipos() {
+            console.log(empleado2);
+            alert("Revisa la consola para ver la herencia de empleado2");
+        }
+
+        prototipos();
+    
+    </script>
+</body>
+</html>
