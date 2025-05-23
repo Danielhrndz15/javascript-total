@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practica2</title>
+</head>
+ 
+<body>
+    <script>
+        class Colegio {
+            constructor(nombre, direccion, cantEstudiantes) {
+                this._nombre = nombre;
+                this._direccion = direccion;
+                this._cantEstudiantes = cantEstudiantes;
+            }
+ 
+            get nombre() {
+                return this._nombre;
+            }
+ 
+            set nombre(nuevoNombre) {
+                this._nombre = nuevoNombre;
+            }
+ 
+            get direccion() {
+                return this._direccion;
+            }
+ 
+            set direccion(nuevaDireccion) {
+                this._direccion = nuevaDireccion;
+            }
+ 
+            get cantEstudiantes() {
+                return this._cantEstudiantes;
+            }
+ 
+            set cantEstudiantes(nuevaCantEstudiantes) {
+                this._cantEstudiantes = nuevaCantEstudiantes;
+            }
+        }
+ 
+        const miColegio = new Colegio("CTP", "San Rafael", 700);
+    </script>
+</body>
+ 
+</html>

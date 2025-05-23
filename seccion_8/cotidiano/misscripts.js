@@ -12,9 +12,9 @@ class Carro {
     }
 }
 const listaCoches = [
-    new Carro("Ford", "Focus", "Rojo", 2015, "Matías Pérez"),
-    new Carro("Chevrolet", "Camaro", "Negro", 2018, "Silvina Marquet"),
-    new Carro("Toyota", "Corolla", "Blanco", 2021, "Carlos García")
+    new Carro("Ford", "focus", "rojo", 2015, "matías pérez"),
+    new Carro("Chevrolet", "camaro", "negro", 2018, "silvina marquet"),
+    new Carro("Toyota", "corolla", "blanco", 2021, "carlos garcía")
 ];
 function mostrarAutomoviles() {
     var lista = document.getElementById("lista");
