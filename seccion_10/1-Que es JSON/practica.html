@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <head>
+    <title>JSON</title>
+  </head>
+  <body>
+ 
+    <div id="nombre"></div>
+    <div id="edad"></div>
+    <div id="esEstudiante"></div>
+    <div id="calle"></div>
+    <div id="ciudad"></div>
+    <div id="telefonos"></div>
+    <script>
+        let datosJson;
+ 
+ 
+        let xhr = new XMLHttpRequest();
+ 
+        xhr.open('GET', "persona.json", true);
+ 
+        xhr.responseType = 'json';
+ 
+        xhr.onload = function() {            
+ 
+            if(xhr.status === 200) {
+               
+                datosJson = xhr.response;
+ 
+           
+                let elementoNombre = document.getElementById("nombre");
+                let elementoEdad = document.getElementById("edad");
+                let elementoEstudiante = document.getElementById("esEstudiante");
+                let elementoCalle = document.getElementById("calle");
+                let elementoCiudad = document.getElementById("ciudad");
+                let elementoTelefono = document.getElementById("telefonos");
+ 
+             
+                elementoNombre.textContent = datosJson.nombre;
+                elementoEdad.textContent = datosJson.edad;
+                elementoEstudiante.textContent = datosJson.esEstudiante;
+                elementoCalle.textContent = datosJson.direccion.calle;
+                elementoCiudad.textContent = datosJson.direccion.ciudad;
+                elementoTelefono.textContent = datosJson.telefonos;
+ 
+            } else {
+ 
+            }
+        }
+ 
+ 
+        xhr.send();
+    </script>
+  </body>
+</html>

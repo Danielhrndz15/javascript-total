@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="titulo"></div>
+    <div id="director"></div>
+    <div id="lanzamiento"></div>
+    <div id="duracion"></div>
+    <div id="actores"></div>
+    <div id="premioOscar"></div>
+
+    <script>
+        let datosJson1; 
+
+        fetch('Practica_1.json')
+
+        .then(res => res.json())
+
+        .then((salida) => {
+            datosJson1 = salida;
+
+            let elementoTitulo = document.getElementById("titulo")
+            let elementoDirector = document.getElementById("director")
+            let elementoLanzamiento = document.getElementById("lanzamiento")
+            let elementoDuracion = document.getElementById("duracion")
+            let elementoActores = document.getElementById("actores")
+            let elementoPremioOscar = document.getElementById("premioOscar")
+
+            elementoTitulo.textContent = datosJson1.titulo;
+            elementoDirector.textContent = datosJson1.director;
+            elementoLanzamiento.textContent = datosJson1.lanzamiento;
+            elementoDuracion.textContent = datosJson1.duracion;
+            elementoActores.textContent = datosJson1.actores;
+            elementoPremioOscar.textContent = datosJson1.premioOscar;
+        })
+    </script>
+</body>
+
+</html>

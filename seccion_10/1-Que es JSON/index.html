@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Este div mostrará el nombre obtenido desde el archivo JSON -->
+     <div id="nombre"></div>
+     <div id="edad"></div>
+     <script>
+        
+        let datosJson; // Se declara una variable para almacenar los datos del archivo JSON
+
+        // Se crea un nuevo objeto XMLHttpRequest para hacer una petición HTTP
+        let xhr = new XMLHttpRequest();
+
+        // Se configura la petición: método GET, URL del archivo y modo asincrónico (true)
+        xhr.open('GET', "persona.json", true);
+
+        // Se define el tipo de respuesta esperado como JSON
+        xhr.responseType = 'json';
+
+        // Se define una función que se ejecutará cuando la respuesta esté lista
+        xhr.onload = function() {
+            // Se verifica que el estado de la respuesta sea 200 (OK)
+            if(xhr.status === 200) {
+                // Se guarda la respuesta (ya convertida a objeto) en la variable
+                datosJson = xhr.response;
+
+                // Se obtiene el elemento HTML con id "nombre"
+                let elementoNombre = document.getElementById("nombre");
+
+                // Se actualiza el contenido del elemento con el nombre obtenido del JSON
+                elementoNombre.textContent = datosJson.nombre;
+
+            } else {
+                // En caso de error, se puede mostrar un mensaje o ejecutar otra acción
+                // console.error("No se pudo cargar el archivo JSON");
+            }
+        }
+
+        // Se envía la petición al servidor para que comience el proceso
+        xhr.send();
+    
+     </script>
+</body>
+</html>

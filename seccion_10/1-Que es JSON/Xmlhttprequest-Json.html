@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>XMLHttpRequest y JSON - Explicación Didáctica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        .slide {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: Consolas, monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>Uso de <code>XMLHttpRequest</code> y archivos JSON</h1>
+ 
+        <h2>¿Qué es <code>XMLHttpRequest</code>?</h2>
+        <p>Es un objeto de JavaScript que permite hacer peticiones HTTP sin recargar la página. Se usa comúnmente para cargar datos de APIs o archivos locales como JSON.</p>
+ 
+        <h2>Métodos usados:</h2>
+        <ul>
+            <li><code>xhr.open('GET', 'persona.json', true);</code>: Configura la petición (método, URL y asincronía).</li>
+            <li><code>xhr.responseType = 'json';</code>: Especifica que la respuesta debe interpretarse como JSON.</li>
+            <li><code>xhr.onload = function() {...}</code>: Función que se ejecuta cuando se recibe la respuesta.</li>
+            <li><code>xhr.send();</code>: Envía la petición.</li>
+        </ul>
+ 
+        <h2>¿Qué significa <code>xhr.status === 200</code>?</h2>
+        <p>El número 200 es un <strong>código de estado HTTP</strong> que indica que la petición fue exitosa y el archivo fue encontrado.</p>
+ 
+        <h2>¿Qué es un archivo JSON?</h2>
+        <p><strong>JSON</strong> (JavaScript Object Notation) es un formato ligero para representar datos estructurados. Usa una estructura de pares clave-valor.</p>
+ 
+        <pre><code>{
+    "nombre": "Pedro Toledo",
+    "edad": 35,
+    "esEstudiante": false
+}</code></pre>
+ 
+        <h2>Visualización en HTML</h2>
+        <p>Con el siguiente código se carga el nombre desde el archivo JSON:</p>
+        <pre><code>let xhr = new XMLHttpRequest();
+xhr.open('GET', 'persona.json', true);
+xhr.responseType = 'json';
+xhr.onload = function() {
+    if (xhr.status === 200) {
+        document.getElementById("nombre").textContent = xhr.response.nombre;
+    }
+}
+xhr.send();</code></pre>
+    </div>
+ 
+    <div class="slide">
+        <h1>Códigos de Estado HTTP más comunes</h1>
+        <p>Cuando se hace una petición al servidor, este responde con un número de tres cifras que indica el estado de la operación. Algunos ejemplos comunes son:</p>
+ 
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Significado</th>
+                    <th>Descripción didáctica</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>200</strong></td>
+                    <td>OK</td>
+                    <td>✅ Todo funcionó correctamente. El recurso fue encontrado y enviado.</td>
+                </tr>
+                <tr>
+                    <td><strong>201</strong></td>
+                    <td>Created</td>
+                    <td>🎉 Recurso creado exitosamente (por ejemplo, tras enviar un formulario).</td>
+                </tr>
+                <tr>
+                    <td><strong>204</strong></td>
+                    <td>No Content</td>
+                    <td>✅ La petición fue exitosa pero no hay contenido que devolver.</td>
+                </tr>
+                <tr>
+                    <td><strong>301</strong></td>
+                    <td>Moved Permanently</td>
+                    <td>🔁 El recurso fue movido a otra URL permanentemente.</td>
+                </tr>
+                <tr>
+                    <td><strong>302</strong></td>
+                    <td>Found / Redirect</td>
+                    <td>🔄 El recurso fue temporalmente movido a otra URL.</td>
+                </tr>
+                <tr>
+                    <td><strong>400</strong></td>
+                    <td>Bad Request</td>
+                    <td>❌ La petición está mal formada. El servidor no la entiende.</td>
+                </tr>
+                <tr>
+                    <td><strong>401</strong></td>
+                    <td>Unauthorized</td>
+                    <td>🔒 Se necesita autenticación para acceder.</td>
+                </tr>
+                <tr>
+                    <td><strong>403</strong></td>
+                    <td>Forbidden</td>
+                    <td>🚫 El servidor entiende la petición pero no autoriza el acceso.</td>
+                </tr>
+                <tr>
+                    <td><strong>404</strong></td>
+                    <td>Not Found</td>
+                    <td>❌ El recurso solicitado no existe o fue eliminado.</td>
+                </tr>
+                <tr>
+                    <td><strong>500</strong></td>
+                    <td>Internal Server Error</td>
+                    <td>💥 Error del servidor. Algo falló internamente.</td>
+                </tr>
+                <tr>
+                    <td><strong>503</strong></td>
+                    <td>Service Unavailable</td>
+                    <td>📴 El servidor no está disponible (mantenimiento o sobrecarga).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

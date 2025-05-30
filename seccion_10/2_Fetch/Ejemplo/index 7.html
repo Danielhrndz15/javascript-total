@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <head>
+    <title>JSON</title>
+  </head>
+  <body>
+
+    <!-- Este elemento servirá para mostrar en pantalla la edad obtenida del archivo JSON -->
+    <div id="nombre"></div>
+
+    <hr/>
+
+
+    <script>
+        let datosJson; // Se declara una variable para almacenar los datos del archivo JSON
+
+        /*
+          Se utiliza fetch() para hacer una petición HTTP y obtener el contenido de 'persona.json'
+          fetch() devuelve una Promesa, lo que permite trabajar de manera asíncrona.
+        */
+        fetch('persona.json')
+        
+        /*
+          Se encadena un .then() para procesar la respuesta.
+          res.json() convierte la respuesta del servidor (tipo Response) en un objeto JSON.
+        */
+        .then(res => res.json())
+
+        /*
+          El siguiente .then() recibe el objeto JSON ya transformado como parámetro (llamado 'salida').
+          Se guarda en la variable datosJson, y se usa para mostrar la propiedad 'edad' en el HTML.
+        */
+        .then((salida) => {
+          datosJson = salida; // Asigna los datos del JSON a una variable global
+
+          // Se obtiene el elemento del DOM con id "nombre"
+          let elementoTexto = document.getElementById('nombre');
+
+          // Se modifica el contenido del elemento con el valor de la propiedad 'edad' del JSON
+          elementoTexto.textContent = datosJson.nombre;
+        })
+    </script>
+  </body>
+</html>

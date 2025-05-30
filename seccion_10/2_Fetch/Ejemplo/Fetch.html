@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>fetch() y JSON - Explicación Didáctica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        .slide {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <h1>Uso de <code>fetch()</code> y archivos JSON</h1>
+
+        <h2>¿Qué es <code>fetch()</code>?</h2>
+        <p>Es una función moderna de JavaScript que permite hacer peticiones HTTP. Devuelve una <strong>Promesa</strong>, lo que facilita trabajar con datos de forma asíncrona (sin bloquear la página).</p>
+
+        <h2>¿Qué es una Promesa?</h2>
+        <p>Una <strong>Promesa</strong> en JavaScript representa un valor que puede estar disponible <em>ahora</em>, <em>en el futuro</em> o <em>nunca</em>. Es una forma de manejar operaciones asincrónicas. Una promesa tiene tres estados posibles:</p>
+        <ul>
+            <li><strong>Pendiente</strong>: Aún no se ha completado.</li>
+            <li><strong>Resuelta (cumplida)</strong>: Se completó exitosamente.</li>
+            <li><strong>Rechazada</strong>: Ocurrió un error.</li>
+        </ul>
+        <p>Con <code>.then()</code> manejamos la resolución y con <code>.catch()</code> el rechazo.</p>
+
+        <h2>Pasos clave:</h2>
+        <ol>
+            <li>Se usa <code>fetch('persona.json')</code> para solicitar el archivo.</li>
+            <li><code>.then(res => res.json())</code>: transforma la respuesta a un objeto JSON.</li>
+            <li><code>.then(data => ...)</code>: accede al contenido y lo usa en el HTML.</li>
+        </ol>
+
+        <h2>Ejemplo de código:</h2>
+        <pre><code>fetch('persona.json')
+  .then(respuesta => respuesta.json())
+  .then(datos => {
+    document.getElementById("nombre").textContent = datos.nombre;
+  })
+  .catch(error => {
+    console.error("Error al cargar el archivo JSON:", error);
+  });</code></pre>
+
+        <h2>Explicación:</h2>
+        <ul>
+            <li><strong>fetch()</strong>: Inicia la petición HTTP.</li>
+            <li><strong>.then(res => res.json())</strong>: Convierte la respuesta a objeto JSON.</li>
+            <li><strong>.then(datos =&gt; ...)</strong>: Usa los datos convertidos.</li>
+            <li><strong>.catch()</strong>: Captura errores si el archivo no se encuentra o hay un fallo en la red.</li>
+        </ul>
+
+        <h2>Fragmento de JSON esperado:</h2>
+        <pre><code>{
+  "nombre": "Pedro Toledo",
+  "edad": 35,
+  "esEstudiante": false
+}</code></pre>
+    </div>
+</body>
+</html>

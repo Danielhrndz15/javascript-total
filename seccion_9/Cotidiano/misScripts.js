@@ -31,7 +31,7 @@ class Gato extends Animal {
         return Animal.prototype.informacion.call(this) + ", Sexo: " + this.sexo;
     }
 }
- 
+   
 class Conejo extends Animal {
     constructor(nombre, peso, edad, color) {
         super(nombre, peso, edad);

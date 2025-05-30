@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="nombre"></div>
+    <div id="calle"></div>
+    <div id="ciudad"></div>
+    <div id="cantEstudiantes"></div>
+    <div id="estudiantes"></div>
+
+    <script>
+        let nombre;
+        let calle;
+        let ciudad;
+        let cantEstudiantes;
+        let estudiantes;
+
+        function obtenerDatos() {
+            fetch('Practica_2.json')
+                .then(res => res.json())
+                .then((salida) => {
+                    nombre = salida.nombre;
+                    calle = salida.calle;
+                    ciudad = salida.ciudad;
+                    cantEstudiantes = salida.cantEstudiantes;
+                    estudiantes = salida.Estudiantes;
+
+                    document.getElementById('nombre').textContent = `Nombre: ${nombre}`;
+                    document.getElementById('calle').textContent = `Calle: ${calle}`;
+                    document.getElementById('ciudad').textContent = `Ciudad: ${ciudad}`;
+                    document.getElementById('cantEstudiantes').textContent = `Cantidad de estudiantes: ${cantEstudiantes}`;
+                    document.getElementById('estudiantes').textContent = `Estudiantes: ${estudiantes}`;
+                });
+        }
+        window.onload = obtenerDatos;
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+  <head>
+    <title>JSON</title>
+  </head>
+  <body>
+    <div id="titulo"></div>
+    <div id="director"></div>
+    <div id="lanzamiento"></div>
+    <div id="duracion"></div>
+    <div id="actores"></div>
+    <div id="premioOscar"></div>
+    <script>
+        let datosJson;
+ 
+        let xhr = new XMLHttpRequest();
+ 
+        xhr.open('GET', "pelicula.json", true);
+ 
+        xhr.responseType = 'json';
+ 
+        xhr.onload = function() {            
+ 
+            if(xhr.status === 200) {
+                datosJson = xhr.response;
+ 
+                let elementoTitulo = document.getElementById("titulo");
+                let elementoDirector = document.getElementById("director");
+                let elementoLanzamiento = document.getElementById("lanzamiento");
+                let elementoDuracion = document.getElementById("duracion");
+                let elementoActores = document.getElementById("actores");
+                let elementoPremioOscar = document.getElementById("premioOscar");
+ 
+                elementoTitulo.textContent = datosJson.titulo;
+                elementoDirector.textContent = datosJson.director;
+                elementoLanzamiento.textContent = datosJson.lanzamiento;
+                elementoDuracion.textContent = datosJson.duracion;
+                elementoActores.textContent = datosJson.actores;
+                elementoPremioOscar.textContent = datosJson.premioOscar;
+ 
+            } else {
+                console.error("No se pudo cargar el archivo JSON");
+            }
+        }
+ 
+        xhr.send();
+    </script>
+  </body>
+</html>
