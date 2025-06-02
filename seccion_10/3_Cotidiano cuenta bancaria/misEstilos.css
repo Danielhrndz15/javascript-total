@@ -1,0 +1,36 @@
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background-color: #b30000;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+hr {
+    margin: 15px 0;
+    border: 0;
+    height: 1px;
+    background: #fff;
+}
+
+.saldos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icono {
+    width: 24px;
+    height: 24px;
+}

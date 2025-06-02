@@ -1,0 +1,18 @@
+{
+  "banco": "Banco de Springfield",
+  "sucursal": "Springfield, IL",
+  "titular": "Torres Manuel",
+  "cuenta": "175246108",
+  "saldos": [
+    {
+      "moneda": "USD",
+      "monto": 725.09
+    },
+    {
+      "moneda": "EUR",
+      "monto": 195.67
+    }
+  ],
+  "tarjeta": "1562244781396451",
+  "fecha_apertura": "01/05/2021"
+}
