@@ -1,0 +1,38 @@
+body {
+  margin: 30px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h2 {
+  color: #222;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 8px 16px;
+  margin: 10px 5px 20px 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.estudiante {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.aprobado {
+  background-color: #e8f5e9;
+}
+
+.reprobado {
+  background-color: #fdecea;
+}
+
+#resumen p {
+  margin: 5px 0;
+  font-weight: bold;
+}
