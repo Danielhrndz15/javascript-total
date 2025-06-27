@@ -10,7 +10,7 @@
         function obtenerUsuario() {
             return new Promise(function(resolve, reject) {
                 let xhr = new XMLHttpRequest();
-                chr.open('GET', 'https://jsonplaveholder.typicode.com/users');
+                xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
                 xhr.onload = function() {
                     if(xhr = status === 200) {
                         resolver(JSON.parse(xhr.responseText9));

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>promesa v2 </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promesa v2</title>
 </head>
 <body>
-    <script>
-        let promesa1 = new Promise(Function(resolve, reject){
-            setTimeout(resolve, 2000, "Hola")
-        })  
-
-        let promesa2 = new Promise(Function(resolve, reject){
-            setTimeout(resolve, 6000, "Mundo")
-        })  
-        
-        Promise.all([promesa1,promesa2]).then(function(resultados){
-            console.log(resultados)
-        })
-
-        console.log("El codigo sigue su camino")
-    </script>
+  <script>
+    let promesa1 = new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        resolve("Hola");
+      }, 2000);
+    });
+ 
+    let promesa2 = new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        resolve("Mundo");
+      }, 6000);
+    });
+ 
+    Promise.all([promesa1, promesa2]).then(function(resultados) {
+      console.log(resultados);
+    });
+ 
+    console.log("El código sigue su camino");
+  </script>
 </body>
 </html>
-

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>practica promesa 2</title>
+</head>
+<body>
+  <script>
+    let promesa;
+ 
+    function getDatos(url) {
+      promesa = new Promise(function(resolve, reject) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+ 
+        xhr.onload = function() {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(xhr.responseText);
+          } else {
+            reject("Error de estado: " + xhr.status);
+          }
+        };
+ 
+        xhr.onerror = function() {
+          reject("Error de red");
+        };
+ 
+        xhr.send();
+      });
+      promesa
+        .then(function(respuesta) {
+          console.log("Respuesta recibida:", respuesta);
+        })
+        .catch(function(error) {
+          console.error("Fallo:", error);
+        });
+    }
+
+getDatos("https://jsonplaceholder.typicode.com/users")
+
+  </script>
+</body>
+</html>

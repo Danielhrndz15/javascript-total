@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Conversacion de dolares a colones (ejemplo con error)</h2>
+    <script>
+        let dolar;
+        let montoDolares = 100;
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then (res => res.json())
+        .then(data => {
+            dolar = data.rates.CRC; //Valor del Dolar en colones
+            console.log("Tasa obtenida:",dolar);
+        });
+
+        // Esto se ejecuta antes de tener de tener respuestas fetch
+        let colones = montoDolares = dolar;
+        console.log(`${montoDolares} dolares son aproximadamente ${colones} colones`) 
+
+    </script>
+</body>
+</html>
