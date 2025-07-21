@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>practica 2</title>
+ 
+</head>
+<body>
+ 
+  <h1>Tabla del Cinco - Manejo de Errores</h1>
+  <input type="number" id="numero" placeholder="Ingresa un número" />
+  <button onclick="manejarErrores()">Calcular</button>
+ 
+  <div id="resultado"></div>
+ 
+  <script>
+    function tablaDelCinco(numero) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          if (numero === 0) {
+            reject(new Error('❌ El número no puede ser 0'));
+          } else {
+            resolve(5 * numero);
+          }
+        }, 1000);
+      });
+    }
+ 
+    function manejarErrores() {
+      const valor = document.getElementById('numero').value;
+      const numero = Number(valor);
+      const resultadoEl = document.getElementById('resultado');
+ 
+      tablaDelCinco(numero)
+        .then(function (resultado) {
+          resultadoEl.textContent = `✅ Resultado: ${resultado}`;
+          resultadoEl.style.color = '#0a7f0a';
+        })
+        .catch(function (error) {
+          resultadoEl.textContent = error.message;
+          resultadoEl.style.color = '#d00000';
+        });
+    }
+  </script>
+ 
+</body>
+</html>

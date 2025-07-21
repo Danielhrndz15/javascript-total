@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manejar Errores</title>
+</head>
+<body>
+ 
+<script>
+// CALLBACKS
+function sumarNumeros(a, b, callback) {
+    setTimeout(function () { // para que sea asincrónico
+        if (typeof a !== 'number' || typeof b !== 'number') {
+            return callback(new Error('Algún argumento no es número'));
+        }
+        callback(null, a + b);
+    }, 1000);
+}
+ 
+sumarNumeros('1', 2, function (error, resultado) {
+    if (error) {
+        console.error(error);
+    } else {
+        console.log(resultado);
+    }
+});
+</script>
+ 
+</body>
+</html>

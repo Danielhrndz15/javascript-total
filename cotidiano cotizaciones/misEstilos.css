@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+#EurUsd, #CrcUsd, #BitcoinUsd {
+    background-color: #4d71d5;
+    color: rgb(189, 240, 253);
+    margin: 10px;
+    padding: 10px;
+    width: 40%;
+    display: inline-block;
+    border-radius: 5px; /* Agrega bordes redondeados */
+    font-size: 1.2em; /* Aumenta el tamaño de la fuente */
+}
+
+h1 {
+    color: #333; /* Color del título */
+    font-size: 2.5em; /* Tamaño del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}

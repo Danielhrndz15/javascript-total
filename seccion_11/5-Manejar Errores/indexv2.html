@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manejar Errores</title>
+</head>
+<body>
+ 
+<script>
+// PROMESAS
+function sumarNumeros(a, b) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            if (typeof a !== 'number' || typeof b !== 'number') {
+                reject(new Error("Ambos argumentos deben ser números"));
+            } else {
+                resolve(a + b);
+            }
+        }, 1000);
+    });
+}
+ 
+sumarNumeros(1, '2')
+    .then(function (resultado) {
+        console.log(resultado);
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
+</script>
+ 
+</body>
+</html>
