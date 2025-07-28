@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // Arreglo para almacenar los IDs de los registros creados
+        let idsCreados = [];
+
+        // POST: Crear un nuevo registro
+        async function crearPost(titulo, contenido) {
+            try {
+                let respuesta =
+                    await fetch('https://api.restful-api.dev/objects', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: titulo,
+                            data: contenido,
+                        }),
+                    });
+
+                if (!respuesta.ok) {
+                    throw new Error("Error en la solicitud: " + respuesta.statusText);
+                }
+
+                let data = await respuesta.json();
+                console.log("✅ Registro creado:", data);
+
+                // Guardar el ID del nuevo registro
+                idsCreados.push(data.id);
+                console.log("📌 IDs almacenados:", idsCreados);
+
+            } catch (error) {
+                console.error("❌ Error al crear el registro:", error);
+            }
+        }
+
+        // GET: Obtener un registro por ID
+        async function obtenerPostPorId(id) {
+            try {
+                let respuesta =
+                    await fetch(`https://api.restful-api.dev/objects/${id}`);
+                if (!respuesta.ok) {
+                    throw new Error("No se pudo obtener el registro: " + respuesta.statusText);
+                }
+
+                let data = await respuesta.json();
+                console.log("📄 Registro obtenido:", data);
+            } catch (error) {
+                console.error("❌ Error al obtener el registro:", error);
+            }
+        }
+
+        // PUT: Actualizar un registro por ID
+        async function actualizarPost(id, nuevoTitulo, nuevoContenido) {
+            try {
+                let respuesta =
+                    await fetch(`https://api.restful-api.dev/objects/${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: nuevoTitulo,
+                            data: nuevoContenido,
+                        }),
+                    });
+
+                if (!respuesta.ok) {
+                    throw new Error("No se pudo actualizar: "
+                        + respuesta.statusText);
+                }
+
+                let data = await respuesta.json();
+                console.log("✏️ Registro actualizado:", data);
+            } catch (error) {
+                console.error("❌ Error al actualizar el registro:", error);
+            }
+        }
+
+        // DELETE: Eliminar un registro por ID
+        async function eliminarPost(id) {
+            try {
+                let respuesta = await fetch(`https://api.restful-api.dev/objects/${id}`, {
+                    method: "DELETE",
+                });
+
+                if (!respuesta.ok) {
+                    throw new Error("No se pudo eliminar: " + respuesta.statusText);
+                }
+
+                console.log(`🗑️ Registro con ID ${id} eliminado.`);
+            } catch (error) {
+                console.error("❌ Error al eliminar el registro:", error);
+            }
+        }
+
+
+        // Crear un nuevo registro
+        crearPost("iPhone 13", {
+            marca: "Apple",
+            color: "Azul",
+            almacenamiento: "128GB"
+
+        });
+        // Luego de creado y guardado el ID, puedes usar este ID para otras operaciones (con un poco de espera o async flow)
+        setTimeout(() => {
+            let id = idsCreados[0];
+            if (id) {
+                obtenerPostPorId(id);
+                actualizarPost(id,
+                    "iPhone 13", {
+                    marca: "Apple",
+                    color: "Negro",
+                    almacenamiento: "256GB"
+
+                });
+                //eliminarPost(id);
+            }
+        }, 5000);
+
+    
+    </script>
+</body>
+</html>
