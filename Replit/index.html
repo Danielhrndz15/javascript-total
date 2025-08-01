@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CRUD con JSON Server</title>
+<style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 8px;
+      }
+</style>
+</head>
+<body>
+<h2>Gestion de productos</h2>
+<input type="text" id="nombre" placeholder="Nombre del producto" />
+<input type="number" id="precio" placeholder="Precio" />
+<button onclick="agregarProducto()">Agregar Producto</button>
+<h3> Lista de Productos</h3>
+<table id="tabla">
+<thead>
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Acciones</th>
+</tr>
+</thead>
+<tbody id="productos"></tbody>
+</table>
+<script>
+      const API_URL = 'https://0660b934-f74b-49c3-8d6e-54503dd5ae0b-00-2akb86zb8yeql.janeway.replit.dev//productos';
+      console.log("Ver url" + API_URL);
+      function cargarProductos() {
+        fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          const tbody = document.getElementById("productos");
+          tbody.innerHTML = "";
+          data.forEach((p) => {
+            tbody.innerHTML += `
+<tr>
+<td>${p.id}</td>
+<td>
+<input value="${p.nombre}" id="nombre-${p.id}">
+</td>
+<td>
+<input value="${p.precio}" id="precio-${p.id}">
+</td>
+<td>
+<button onclick="actualizarProducto(${p.id})">Actualizar</button>
+<button onclick="eliminarProducto(${p.id})">Eliminar</button>
+</td>
+</tr>`;
+          }); 
+        });
+      }
+      function agregarProducto() {
+        const nombre = document.getElementById("nombre").value;
+        const precio = document.getElementById("precio").value;
+        fetch(API_URL, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"
+          },
+          body: JSON.stringify({ nombre, precio }),
+        }).then(() => {
+          document.getElementById("nombre").value = "";
+          document.getElementById("precio").value = "";
+          cargarProductos();
+        });
+      }
+      function actualizarProducto(id) {
+        const nombre = document.getElementById(`nombre-${id}`).value;
+        const precio = parseFloat(document.getElementById(`precio-${id}`).value);
+        fetch(`${API_URL}/${id}`, {
+          method: "PUT",
+          headers: {"Content-Type": "application/json"
+          },
+          body: JSON.stringify({ nombre, precio }),
+        }).then(cargarProductos);
+      }
+      function eliminarProducto(id) {
+        fetch(`${API_URL}/${id}`, {
+          method: "DELETE"
+        }).then(cargarProductos);
+      }
+      cargarProductos();
+</script>
+</body>
+</html>
