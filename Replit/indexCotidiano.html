@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gestión de Productos</title>
+<style>
+  body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #FDF6EC;
+  color: #333;
+  padding: 20px;
+}
+
+h1 {
+  color: #FF6F61;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+h2 {
+  color: #1E90FF;
+  border-bottom: 2px dashed #FFD700;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.seccion {
+  margin-bottom: 30px;
+  background-color: #FFF7AA;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px #FFDAB9;
+}
+
+.formulario input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid #87CEFA;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #FFB6C1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #FF69B4;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #D3D3D3;
+  text-align: center;
+}
+
+th {
+  background-color: #FFDEAD;
+  color: #5F4B8B;
+}
+
+tr:nth-child(even) {
+  background-color: #F0FFF0;
+}
+</style>
+  
+</head>
+<body>
+<h1>Gestión de Dispositivos</h1>
+  
+<section class="seccion">
+<h2>Agregar nuevo producto</h2>
+<div class="formulario">
+<input type="text" id="nombre" placeholder="Nombre del producto" />
+<input type="number" id="precio" placeholder="Precio" />
+<button onclick="agregarProducto()">Agregar</button>
+</div>
+</section>
+ 
+<section class="seccion">
+<h2>Consultar producto por ID</h2>
+<div class="formulario">
+<input type="number" id="consultaID" placeholder="ID a consultar" />
+<button onclick="consultarProducto()">Consultar</button>
+</div>
+<div id="resultadoConsulta"></div>
+</section>
+ 
+<section class="seccion">
+<h2>Lista de productos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Acciones</th>
+</tr>
+</thead>
+<tbody id="productos"></tbody>
+</table>
+</section>
+</div>
+ 
+<script>
+    const API_URL = "https://ed994519-7a05-4d33-b9e8-e4f50636fafe-00-3qcgt6ho7x8r1.worf.replit.dev/productos";
+ 
+    function cargarProductos() {
+      fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          const tbody = document.getElementById("productos");
+          tbody.innerHTML = "";
+          data.forEach((p) => {
+            tbody.innerHTML += `
+<tr>
+<td>${p.id}</td>
+<td><input value="${p.nombre}" id="nombre-${p.id}"></td>
+<td><input value="${p.precio}" id="precio-${p.id}"></td>
+<td>
+<button onclick="actualizarProducto(${p.id})">Actualizar</button>
+<button onclick="eliminarProducto(${p.id})">Eliminar</button>
+</td>
+</tr>`;
+          });
+        });
+    }
+ 
+    function agregarProducto() {
+      const nombre = document.getElementById("nombre").value;
+      const precio = document.getElementById("precio").value;
+      fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ nombre, precio }),
+      }).then(() => {
+        document.getElementById("nombre").value = "";
+        document.getElementById("precio").value = "";
+        cargarProductos();
+      });
+    }
+ 
+    function actualizarProducto(id) {
+      const nombre = document.getElementById(`nombre-${id}`).value;
+      const precio = parseFloat(document.getElementById(`precio-${id}`).value);
+      fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ nombre, precio }),
+      }).then(cargarProductos);
+    }
+ 
+    function eliminarProducto(id) {
+      fetch(`${API_URL}/${id}`, { method: "DELETE" })
+        .then(cargarProductos);
+    }
+ 
+    function consultarProducto() {
+      const id = document.getElementById("consultaID").value;
+      fetch(`${API_URL}/${id}`)
+        .then((response) => {
+          if (!response.ok) throw new Error("Producto no encontrado");
+          return response.json();
+        })
+        .then((data) => {
+          document.getElementById("resultadoConsulta").innerHTML = `
+<p><strong>ID:</strong> ${data.id}</p>
+<p><strong>Nombre:</strong> ${data.nombre}</p>
+<p><strong>Precio:</strong> ${data.precio}</p>
+          `;
+        })
+        .catch(() => {
+          document.getElementById("resultadoConsulta").innerText = "Producto no encontrado.";
+        });
+    }
+ 
+    cargarProductos();
+</script>
+</body>
+</html>
