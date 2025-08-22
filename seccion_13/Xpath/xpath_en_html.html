@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo didáctica de XPath</title>
+    <style>
+        :root {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        }
+
+        body {
+            margin: 24px;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        }
+
+        button {
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            background: #f6f6f6;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #eee;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0 0;
+        }
+
+        .examples button {
+            font-size: 0.9rem;
+        }
+
+        .card {
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fafafa;
+        }
+
+        .out {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            background: #fff;
+            min-height: 40px;
+        }
+
+        pre {
+            background: #0b1020;
+            color: #e9eef5;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .muted {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 6px;
+            background: #eef2ff;
+            color: #3730a3;
+            font-size: 0.75rem;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Demostración didáctica de <code>XPath</code> sobre XML</h1>
+    <p class="muted">Escribe un XPath, pulsa <strong>Ejecutar</strong> y verás los resultados renderizados en HTML (no
+        en consola).
+        También puedes hacer clic en los ejemplos para autocompletar.</p>
+
+    <div class="row">
+        <div class="card">
+            <strong>XML</strong>
+            <textarea id="xml" spellcheck="false"><biblioteca>
+  <libro id="b1" categoria="novela">
+    <titulo>El Quijote</titulo>
+    <autor>Miguel de Cervantes</autor>
+    <precio moneda="EUR">12.50</precio>
+  </libro>
+  <libro id="b2" categoria="poesia">
+    <titulo>Veinte poemas</titulo>
+    <autor>Pablo Neruda</autor>
+    <precio moneda="USD">8.99</precio>
+  </libro>
+  <libro id="b3" categoria="novela">
+    <titulo>Cien años de soledad</titulo>
+    <autor>Gabriel García Márquez</autor>
+    <precio moneda="USD">15.00</precio>
+  </libro>
+</biblioteca></textarea>
+        </div>
+
+        <div class="card">
+            <strong>XPath</strong>
+            <input id="xpath" type="text" value="//libro[@categoria='novela']/titulo/text()" />
+            <div class="examples">
+                <button data-x="/biblioteca/libro/titulo">Títulos (ruta absoluta)</button>
+                <button data-x="//libro">Todos los &lt;libro&gt;</button>
+                <button data-x="//libro[@categoria='novela']/titulo/text()">Títulos de novelas</button>
+                <button data-x="//libro[precio &lt; 10]/titulo/text()">Precio &lt; 10</button>
+                <button data-x="//precio[@moneda='USD']">Precios en USD</button>
+                <button data-x="//libro[autor='Pablo Neruda']/@id">ID de libro por autor</button>
+                <button data-x="(//libro)[last()]/titulo/text()">Último libro</button>
+                <button data-x="count(//libro)">Contar libros</button>
+            </div>
+            <div style="margin-top:10px">
+                <button id="run">Ejecutar</button>
+                <button id="pretty">Formatear XML</button>
+            </div>
+            <div class="out" id="out"><em>Resultados aparecerán aquí…</em></div>
+        </div>
+    </div>
+
+    <script>
+        const $ = (s) => document.querySelector(s);
+        const out = $("#out");
+        const xmlEl = $("#xml");
+        const xpathEl = $("#xpath");
+
+        function escapeHtml(str) {
+            return String(str)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;');
+        }
+
+        function show(msg, type = 'info') {
+            out.innerHTML = msg;
+        }
+
+        function runXPath() {
+            const xmlText = xmlEl.value.trim();
+            const xpath = xpathEl.value.trim();
+            if (!xmlText) return show('<em>XML vacío</em>');
+            if (!xpath) return show('<em>Escribe una expresión XPath</em>');
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
+
+            // Detección básica de errores de parseo
+            const parseError = xmlDoc.querySelector('parsererror');
+            if (parseError) {
+                show('<strong>Error de XML:</strong><br><pre>' + escapeHtml(parseError.textContent) + '</pre>');
+                return;
+            }
+
+            try {
+                const res = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+                let html = '';
+                switch (res.resultType) {
+                    case XPathResult.NUMBER_TYPE:
+                        html = `<div><span class="badge">NUMBER</span> ${res.numberValue}</div>`;
+                        break;
+                    case XPathResult.STRING_TYPE:
+                        html = `<div><span class="badge">STRING</span> ${escapeHtml(res.stringValue)}</div>`;
+                        break;
+                    case XPathResult.BOOLEAN_TYPE:
+                        html = `<div><span class="badge">BOOLEAN</span> ${res.booleanValue}</div>`;
+                        break;
+                    default: {
+                        // Iteramos nodos
+                        let node = res.iterateNext();
+                        let i = 0;
+                        let items = [];
+                        while (node) {
+                            i++;
+                            if (node.nodeType === Node.ATTRIBUTE_NODE) {
+                                items.push(`<pre>${escapeHtml(node.name + '="' + node.value + '"')} <span class="badge">@atributo</span></pre>`);
+                            } else if (node.nodeType === Node.TEXT_NODE) {
+                                items.push(`<pre>${escapeHtml(node.textContent)} <span class="badge">#text</span></pre>`);
+                            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                                const xml = new XMLSerializer().serializeToString(node);
+                                items.push(`<pre>${escapeHtml(xml)}</pre>`);
+                            } else {
+                                items.push(`<pre>${escapeHtml(node.nodeName)} (tipo ${node.nodeType})</pre>`);
+                            }
+                            node = res.iterateNext();
+                        }
+                        html = items.length ? items.join('') : '<em>Sin coincidencias</em>';
+                    }
+                }
+                show(html);
+            } catch (e) {
+                show('<strong>Error al evaluar XPath:</strong><br><pre>' + escapeHtml(e.message) + '</pre>');
+            }
+        }
+
+        // Botón ejecutar
+        $("#run").addEventListener('click', runXPath);
+
+        // Botón formatear (intenta pretty print del XML)
+        $("#pretty").addEventListener('click', () => {
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlEl.value, 'application/xml');
+                if (xmlDoc.querySelector('parsererror')) return; // no formatear si hay error
+                const xml = new XMLSerializer().serializeToString(xmlDoc);
+                // simple pretty print: inserta saltos de línea entre tags
+                const formatted = xml
+                    .replaceAll('><', '>\n<')
+                    .split('\n')
+                    .map((line, i, arr) => {
+                        let indent = 0;
+                        if (/^<\//.test(line)) indent = -1;
+                        const level = (arr.level = (arr.level || 0) + indent);
+                        const pad = '  '.repeat(Math.max(level, 0));
+                        if (!/^<\//.test(line) && /<[^!?][^>]*[^/]?>$/.test(line) && !/\/<[^>]*>$/.test(line)) arr.level++;
+                        return pad + line;
+                    })
+                    .join('\n');
+                xmlEl.value = formatted;
+            } catch { }
+        });
+
+        // Cargar ejemplos
+        document.querySelectorAll('.examples button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                xpathEl.value = btn.getAttribute('data-x');
+                runXPath();
+            });
+        });
+
+        // Ejecuta uno por defecto al cargar
+        runXPath();
+    </script>
+</body>
+
+</html>
